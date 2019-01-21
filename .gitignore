@@ -1,0 +1,7 @@
+# Generate from cliffore
+*.pyc
+
+# Generate from editor
+.vscode/
+.ide
+.

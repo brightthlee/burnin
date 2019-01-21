@@ -1,0 +1,29 @@
+# factory info, must set
+line_type: BUNIN         # Burnin
+line_id: TQ              # TQ
+
+# test environment settings
+cmd_line: False          # run from command line (True) or GUI (False),  default is False
+engineering_mode: False  # password is 'abcd' for V1.0/1.xx, default is False
+fail_stop: False         # stop test if a phase failed, default is False
+num_unit: 1              # supported number: 1 - 8, default is 1
+scan_sn: False           # at Gui, whether scan in serial number, default is False
+test_mode: local         # local: test results are not uploaded, only keep local copies.
+                         # the following test mode all upload results to data server
+                         # 1. debug: debugging mode
+                         # 2. audit: audit test
+                         # 3. calibration: calibration test
+                         # 4. reliability: reliablility/repeatability test
+                         # 5. production: production test, shopfloor control on (Default)
+upload_json: none        # none: not upload json files (default)
+                         # all: upload all the json files
+                         # fail: only upload test failed json files
+# Misc settings
+locale: en               # en - English, zh - Chinese, default is en
+log_level: 10            # info:10, warning:20, error:30, fatal:40, default is 10
+num_group: 1             # num of group for multi-up (1-2),  default 1
+display_warning: True    # whether to display Clifford warning, default True
+modes_stop_test: ['production'] # stop test if test_mode is in this list and device_config error
+
+# user test script settings
+example_plug_increment: 3 # user configure value

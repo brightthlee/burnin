@@ -7,7 +7,10 @@ python burnin.py --config-file ./burnin.yaml
 import clifford
 from clifford.names import *
 import csv
-import random
+from foxconn.adb import *
+from test_executor import *
+
+conf.Declare('usb_endpoints', "USB Endpoints list for DUT", default_value=False)
 
 def Build_Measment_List_From_CSV(CsvFile):
   measurement_list=[]
@@ -19,7 +22,7 @@ def Build_Measment_List_From_CSV(CsvFile):
 
 def BuildMeasurement(meas_list):
   measurement_list = []
-  for meas in meas_list:
+  for idx, meas in enumerate(meas_list):
     _item=meas[0]
     _value=meas[1]
     if _value.find(',') >= 0:
@@ -28,21 +31,31 @@ def BuildMeasurement(meas_list):
       _validator=validator_map[_value]
 
     if isinstance(_validator, (list,tuple,str)):
-      measurement_list.append(Measurement(
-                              '%s' % _item).InRange(*_validator))
+      measurement_list.append(Measurement(_item).InRange(*_validator).Doc("{} {}".format(idx,_item)))
     else: 
-      measurement_list.append(Measurement(
-                              '%s' % _item).WithValidator(_validator))
+      measurement_list.append(Measurement(_item).WithValidator(_validator).Doc("{} {}".format(idx,_item)))
   return measurement_list
 
 def BuildPhase(phase_name, meas_list):
   @TestPhase(timeout_s=200)
   @measures(*BuildMeasurement(meas_list))
   def fn(test_data):
+    if conf.scan_sn == True:
+        # if serial number is the same with adb devices
+        #executor = Test_Executor(serial_number=test_data.state['dut_id'])
+
+        # if need to use usb endpoint 
+        #usb_endpoint = conf.usb_endpoints.split(' ')[test_data.state['thread_id']]
+        #executor = Test_Executor(usb_ep=usb_endpoint)
+
+        # if need to scan all usb deivces
+        executor = Test_Executor(find_serial=test_data.state['dut_id'])
+    else:
+        executor = Test_Executor()
     for meas in meas_list:
       _item=meas[0]
-      _validator=meas[1]
-      test_data.measurements[_item] = random.randint(1,10)
+      # _validator=meas[1]
+      test_data.measurements[_item] = executor.run(_item)
   fn.code_info.name = phase_name
   return fn
 
@@ -75,7 +88,7 @@ if __name__ == '__main__':
   test = clifford.Test(*running_phases,
        # Some metadata fields, these in particular are used by mfg-inspector,
       # but you can include any metadata fields.
-      test_name='Hello_world', test_description='Clifford Example Test',
+      test_name='BURNIN', test_description='Clifford FATP BURNIN',
       test_version='B_SMT_1.0.4')
 
   # upload the test result to data server and keep a local copy

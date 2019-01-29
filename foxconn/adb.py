@@ -3,6 +3,7 @@
 """
 
 import os
+import platform
 import subprocess
 
 
@@ -15,6 +16,12 @@ class Adb(object):
     Args:
       serial: serial of DUT
     """
+
+    # Determine the correct ADB executable to call depending on the OS.
+    if platform.system() == 'Windows':
+      adb = 'adb.exe'
+    elif platform.system() == 'Linux':
+      adb = 'adb'
 
     self._serial = serial
     if serial:

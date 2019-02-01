@@ -1,0 +1,215 @@
+{
+    "NumDUT":"1",
+    "Acupoints": [
+        {
+            "id": "1-1",
+            "RS232": "COM1",
+            "PlcRegisters": {
+                "OK": "M1111",
+                "NG": "M1112",
+                "HasProduct": "M1113",
+                "OpenDoorAbnormal":"M114",
+                "CloseDoorAbnormal":"M115",
+                "CanTest": "M116",
+                "Normal":"M117",
+                "Testing": "M1116"
+            }
+        },
+        {
+            "id": "1-2",
+            "RS232": "COM2",
+            "PlcRegisters": {
+                "OK": "M1131",
+                "NG": "M1132",
+                "HasProduct": "M1133",
+                "OpenDoorAbnormal":"M134",
+                "CloseDoorAbnormal":"M135",
+                "CanTest": "M136",
+                "Normal":"M137",
+                "Testing": "M1136"
+            }
+        },
+        {
+            "id": "1-3",
+            "RS232": "COM3",
+            "PlcRegisters": {
+                "OK": "M1151",
+                "NG": "M1152",
+                "HasProduct": "M1153",
+                "OpenDoorAbnormal":"M154",
+                "CloseDoorAbnormal":"M155",
+                "CanTest": "M156",
+                "Normal":"M157",
+                "Testing": "M1156"
+            }
+        },
+        {
+            "id": "1-4",
+            "RS232": "COM4",
+            "PlcRegisters": {
+                "OK": "M1171",
+                "NG": "M1172",
+                "HasProduct": "M1173",
+                "OpenDoorAbnormal":"M174",
+                "CloseDoorAbnormal":"M175",
+                "CanTest": "M176",
+                "Normal":"M177",
+                "Testing": "M1176"
+            }
+        },
+        {
+            "id": "1-5",
+            "RS232": "COM5",
+            "PlcRegisters": {
+                "OK": "M1191",
+                "NG": "M1192",
+                "HasProduct": "M1193",
+                "OpenDoorAbnormal":"M194",
+                "CloseDoorAbnormal":"M195",
+                "CanTest": "M196",
+                "Normal":"M197",
+                "Testing": "M1196"
+            }
+        },
+        {
+            "id": "1-6",
+            "RS232": "COM6",
+            "PlcRegisters": {
+                "OK": "M1211",
+                "NG": "M1212",
+                "HasProduct": "M1213",
+                "OpenDoorAbnormal":"M214",
+                "CloseDoorAbnormal":"M215",
+                "CanTest": "M216",
+                "Normal":"M217",
+                "Testing": "M1216"
+            }
+        },
+        {
+            "id": "1-7",
+            "RS232": "COM7",
+            "PlcRegisters": {
+                "OK": "M1231",
+                "NG": "M1232",
+                "HasProduct": "M1233",
+                "OpenDoorAbnormal":"M234",
+                "CloseDoorAbnormal":"M235",
+                "CanTest": "M236",
+                "Normal":"M237",
+                "Testing": "M1236"
+            }
+        },
+        {
+            "id": "1-8",
+            "RS232": "COM8",
+            "PlcRegisters": {
+                "OK": "M1251",
+                "NG": "M1252",
+                "HasProduct": "M1253",
+                "OpenDoorAbnormal":"M254",
+                "CloseDoorAbnormal":"M255",
+                "CanTest": "M256",
+                "Normal":"M257",
+                "Testing": "M1256"
+            }
+        },
+        {
+            "id": "1-9",
+            "RS232": "COM9",
+            "PlcRegisters": {
+                "OK": "M1271",
+                "NG": "M1272",
+                "HasProduct": "M1273",
+                "OpenDoorAbnormal":"M274",
+                "CloseDoorAbnormal":"M275",
+                "CanTest": "M276",
+                "Normal":"M277",
+                "Testing": "M1276"
+            }
+        },
+        {
+            "id": "2-1",
+            "RS232": "COM10",
+            "PlcRegisters": {
+                "OK": "M1291",
+                "NG": "M1292",
+                "HasProduct": "M1293",
+                "OpenDoorAbnormal":"M294",
+                "CloseDoorAbnormal":"M295",
+                "CanTest": "M296",
+                "Normal":"M297",
+                "Testing": "M1296"
+            }
+        },
+        {
+            "id": "2-2",
+            "RS232": "COM11",
+            "PlcRegisters": {
+                "OK": "M1311",
+                "NG": "M1312",
+                "HasProduct": "M1313",
+                "OpenDoorAbnormal":"M314",
+                "CloseDoorAbnormal":"M315",
+                "CanTest": "M316",
+                "Normal":"M317",
+                "Testing": "M1316"
+            }
+        },
+        {
+            "id": "2-3",
+            "RS232": "COM12",
+            "PlcRegisters": {
+                "OK": "M1331",
+                "NG": "M1332",
+                "HasProduct": "M1333",
+                "OpenDoorAbnormal":"M334",
+                "CloseDoorAbnormal":"M335",
+                "CanTest": "M336",
+                "Normal":"M337",
+                "Testing": "M1336"
+            }
+        },
+        {
+            "id": "2-4",
+            "RS232": "COM13",
+            "PlcRegisters": {
+                "OK": "M1351",
+                "NG": "M1352",
+                "HasProduct": "M1353",
+                "OpenDoorAbnormal":"M354",
+                "CloseDoorAbnormal":"M355",
+                "CanTest": "M356",
+                "Normal":"M357",
+                "Testing": "M1356"
+            }
+        },
+        {
+            "id": "2-5",
+            "RS232": "COM14",
+            "PlcRegisters": {
+                "OK": "M1371",
+                "NG": "M1372",
+                "HasProduct": "M1373",
+                "OpenDoorAbnormal":"M374",
+                "CloseDoorAbnormal":"M375",
+                "CanTest": "M376",
+                "Normal":"M377",
+                "Testing": "M1376"
+            }
+        },
+        {
+            "id": "2-6",
+            "RS232": "COM15",
+            "PlcRegisters": {
+                "OK": "M1391",
+                "NG": "M1392",
+                "HasProduct": "M1393",
+                "OpenDoorAbnormal":"M394",
+                "CloseDoorAbnormal":"M395",
+                "CanTest": "M396",
+                "Normal":"M397",
+                "Testing": "M1396"
+            }
+        }
+    ]
+}

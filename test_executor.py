@@ -21,7 +21,7 @@ class Test_Executor:
             devices = [l.split('\t')[0] for l in stdout.strip().splitlines()[1:]]
             for d in devices:
                 connection = Adb(d)
-                if find_serial == connection.check_output(['/home/flex/bin/fct.sh', 'get_serial']).splitlines()[1]:
+                if find_serial == filter(None, connection.check_output(['/home/flex/bin/fct.sh', 'get_serial']).splitlines())[-2]:
                     self.adb = connection
                     break
         else:
@@ -33,7 +33,7 @@ class Test_Executor:
                 return getattr(self, method)()
 
     def TEST_ADB_ROOT(self):
-     	    return self.adb.check_output(['/home/flex/bin/fct.sh','get_serial']).splitlines()[1]
+     	    return filter(None, self.adb.check_output(['/home/flex/bin/fct.sh','get_serial']).splitlines())[-2]
 
     def TEST_PUSH_BURNIN(self):
             return True

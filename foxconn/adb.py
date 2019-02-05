@@ -3,8 +3,9 @@
 """
 
 import os
+import platform
 import subprocess
-
+from clifford.util import timeouts
 
 class Adb(object):
   """Class of adb connection to DUT"""
@@ -16,12 +17,18 @@ class Adb(object):
       serial: serial of DUT
     """
 
+    # Determine the correct ADB executable to call depending on the OS.
+    if platform.system() == 'Windows':
+      adb = 'adb.exe'
+    elif platform.system() == 'Linux':
+      adb = 'adb'
+
     self._serial = serial
     if serial:
       print ("ADB connect to %s" % serial)
-      self._command_prefix = ['adb', '-s', serial]
+      self._command_prefix = [adb, '-s', serial]
     else:
-      self._command_prefix = ['adb']
+      self._command_prefix = [adb]
 
   def call(self, command, stdin=None, stdout=None, stderr=None):
     """Executes a command via adb connection.
@@ -136,3 +143,15 @@ class Adb(object):
   def sync(self):
     """Send adb shell sync command"""
     subprocess.check_call(self._command_prefix + ['shell', 'sync'])
+
+  def wait_for_device(self, out_queue, log=False):
+    """Wait for device to connect.
+
+    Args:
+      out_queue: return value for thread.
+
+    Returns:
+      After device is connected, return True
+    """
+    subprocess.check_output(self._command_prefix + ['wait-for-device'])
+    out_queue.put('True')

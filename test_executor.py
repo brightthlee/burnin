@@ -30,115 +30,118 @@ class Test_Executor:
     def run(self, item_names):
         for method in self.method_list[::-1]:
             if method in item_names:
-                return getattr(self, method)()
+                return getattr(self, method)(item_names)
 
+<<<<<<< HEAD
     def TEST_ADB_ROOT(self):
-     	    return filter(None, self.adb.check_output(['/home/flex/bin/fct.sh','get_serial']).splitlines())[-2]
+     	return filter(None, self.adb.check_output(['/home/flex/bin/fct.sh','get_serial']).splitlines())[-2]
+=======
+    def TEST_ADB_ROOT(self, name):
+        return True
+        # return filter(None, self, name.adb.check_output(['/home/flex/bin/fct.sh','get_serial']).splitlines())[-2]
 
-    def TEST_PUSH_BURNIN(self):
+    def TEST_PUSH_BURNIN(self, name):
             return True
 
-    def TEST_START_TO_BURNIN(self):
+    def TEST_START_TO_BURNIN(self, name):
             return True
 
-    def CAMERA_TEMP_THERMISTOR_SB(self):
+    def CAMERA_TEMP_THERMISTOR_SB(self, name):
+            loop = name.split('_')[-2] 
+            return 30 + int(loop);
+
+    def IMAGE_CAPTURE(self, name):
             return True
 
-    def CAMERA_TEMP_THERMISTOR_SB_1_1(self):
+    def IR_LED_ON_50MA(self, name):
             return True
 
-    def IMAGE_CAPTURE(self):
+    def RGB_LED_ALL_ON_10MA(self, name):
             return True
 
-    def IR_LED_ON_50MA(self):
+    def WIFI_RESET_AND_BOOT(self, name):
             return True
 
-    def RGB_LED_ALL_ON_10MA(self):
+    def BT_RESET_AND_BOOT(self, name):
             return True
 
-    def WIFI_RESET_AND_BOOT(self):
+    def TOGGLE_ICR(self, name):
             return True
 
-    def BT_RESET_AND_BOOT(self):
+    def READ_TEMP_THERMISTOR_SB(self, name):
             return True
 
-    def TOGGLE_ICR(self):
+    def READ_TEMP_THERMISTOR_MPP2_SOC(self, name):
             return True
 
-    def READ_TEMP_THERMISTOR_SB(self):
+    def READ_TEMP_THERMISTOR_MPP3_WIFI(self, name):
             return True
 
-    def READ_TEMP_THERMISTOR_MPP2_SOC(self):
+    def AUDIO_STRESS_TEST(self, name):
             return True
 
-    def READ_TEMP_THERMISTOR_MPP3_WIFI(self):
+    def Coprocessor_STRESS_TEST(self, name):
             return True
 
-    def AUDIO_STRESS_TEST(self):
+    def ENV_SET_MID(self, name):
             return True
 
-    def Coprocessor_STRESS_TEST(self):
+    def MEM_STRESS_TEST(self, name):
             return True
 
-    def ENV_SET_MID(self):
+    def ENV_SET_OFF(self, name):
             return True
 
-    def MEM_STRESS_TEST(self):
+    def TEST_PULL_PICTURE(self, name):
             return True
 
-    def ENV_SET_OFF(self):
+    def CAMERA_TEMPERATURE_LOW(self, name):
+            return 20
+
+    def DPC_WHITE_PIXELS(self, name):
             return True
 
-    def TEST_PULL_PICTURE(self):
+    def DARK_MEAN(self, name):
             return True
 
-    def CAMERA_TEMPERATURE_LOW(self):
+    def DARK_STD(self, name):
             return True
 
-    def DPC_WHITE_PIXELS(self):
+    def DARK_ROW_STD(self, name):
             return True
 
-    def DARK_MEAN(self):
+    def DARK_COL_STD(self, name):
             return True
 
-    def DARK_STD(self):
+    def DARK_LOCAL_ROW_STD(self, name):
             return True
 
-    def DARK_ROW_STD(self):
+    def DARK_LOCAL_COL_STD(self, name):
             return True
 
-    def DARK_COL_STD(self):
+    def CAMERA_TEMPERATURE_HIGH(self, name):
+            return 20
+
+    def DPC_WHITE_PIXELS_HIGHTEMP(self, name):
             return True
 
-    def DARK_LOCAL_ROW_STD(self):
+    def DARK_MEAN_HIGHTEMP(self, name):
             return True
 
-    def DARK_LOCAL_COL_STD(self):
+    def DARK_STD_HIGHTEMP(self, name):
             return True
 
-    def CAMERA_TEMPERATURE_HIGH(self):
+    def DARK_ROW_STD_HIGHTEMP(self, name):
             return True
 
-    def DPC_WHITE_PIXELS_HIGHTEMP(self):
+    def DARK_COL_STD_HIGHTEMP(self, name):
             return True
 
-    def DARK_MEAN_HIGHTEMP(self):
+    def DARK_LOCAL_ROW_STD_HIGHTEMP(self, name):
             return True
 
-    def DARK_STD_HIGHTEMP(self):
+    def DARK_LOCAL_COL_STD_HIGHTEMP(self, name):
             return True
 
-    def DARK_ROW_STD_HIGHTEMP(self):
-            return True
-
-    def DARK_COL_STD_HIGHTEMP(self):
-            return True
-
-    def DARK_LOCAL_ROW_STD_HIGHTEMP(self):
-            return True
-
-    def DARK_LOCAL_COL_STD_HIGHTEMP(self):
-            return True
-
-    def SEND_LOG_TO_CAMERA(self):
+    def SEND_LOG_TO_CAMERA(self, name):
             return True

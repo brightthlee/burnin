@@ -76,7 +76,11 @@ def set_EnvSetup_func(test_data, meas_list):
       result = 'Fail'
     else:
       result = 'Pass'
+<<<<<<< HEAD
  
+=======
+
+  # result = 'Pass'   # force pass the env setup
   for meas in meas_list:
     _item=meas[0]
     # _validator=meas[1]

@@ -22,6 +22,8 @@ class Adb(object):
       adb = 'adb.exe'
     elif platform.system() == 'Linux':
       adb = 'adb'
+    elif platform.system() == 'Darwin':
+      adb = 'adb'
 
     self._serial = serial
     if serial:

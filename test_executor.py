@@ -1,5 +1,6 @@
-from foxconn.adb import *
+import os
 import subprocess
+from foxconn.adb import *
 
 class Test_Executor:
     method_list = []
@@ -15,6 +16,7 @@ class Test_Executor:
             self.usb_ep = usb_ep
             self.adb = Adb(usb_ep)
         elif find_serial is not None:
+            self._sn = find_serial
             p = subprocess.Popen(["adb", "devices"], shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             stdout, stderr = p.communicate()
             p.poll()
@@ -32,10 +34,9 @@ class Test_Executor:
             if method in item_names:
                 return getattr(self, method)(item_names)
 
-<<<<<<< HEAD
     def TEST_ADB_ROOT(self):
      	return filter(None, self.adb.check_output(['/home/flex/bin/fct.sh','get_serial']).splitlines())[-2]
-=======
+
     def TEST_ADB_ROOT(self, name):
         return True
         # return filter(None, self, name.adb.check_output(['/home/flex/bin/fct.sh','get_serial']).splitlines())[-2]
@@ -51,6 +52,11 @@ class Test_Executor:
             return 30 + int(loop);
 
     def IMAGE_CAPTURE(self, name):
+            return True
+            loop = name.split('_')[-2] 
+            self.adb.check_output(['/home/flex/bin/fct.sh','camera_enable','on'])
+            self.adb.check_output(['/home/flex/bin/fct.sh','camera_capture','/data/dpc_round%s.raw' % loop])
+            self.adb.check_output(['/home/flex/bin/fct.sh','camera_enable','off'])
             return True
 
     def IR_LED_ON_50MA(self, name):
@@ -93,7 +99,12 @@ class Test_Executor:
             return True
 
     def TEST_PULL_PICTURE(self, name):
-            return True
+        if not os.path.exists(self._sn):
+            os.mkdir(self._sn)
+        for i in range(1,10):
+            # self.adb.pull('/data/dpc_round%d.raw' % i, '{}/dpc_round{}.raw'.format(self._sn, i)])
+            subprocess.call(['touch', '{}/dpc_round{}.raw'.format(self._sn, i)])
+        return True
 
     def CAMERA_TEMPERATURE_LOW(self, name):
             return 20
@@ -120,7 +131,7 @@ class Test_Executor:
             return True
 
     def CAMERA_TEMPERATURE_HIGH(self, name):
-            return 20
+            return 40
 
     def DPC_WHITE_PIXELS_HIGHTEMP(self, name):
             return True

@@ -10,6 +10,8 @@ import csv
 import threading
 import time
 import subprocess
+import os
+import shutil
 from clifford.names import *
 from foxconn.adb import *
 from test_executor import *
@@ -58,6 +60,7 @@ def find_device_serial(serial_num):
   return None
 
 def set_EnvSetup_func(test_data, meas_list):
+
   result = 'Fail'
   index = test_data.state['thread_id']
   Has_Product = subprocess.call([conf.fixture_ctrl,"has_product",str(index)])
@@ -76,10 +79,7 @@ def set_EnvSetup_func(test_data, meas_list):
       result = 'Fail'
     else:
       result = 'Pass'
-<<<<<<< HEAD
  
-=======
-
   # result = 'Pass'   # force pass the env setup
   for meas in meas_list:
     _item=meas[0]
@@ -103,6 +103,8 @@ def set_BurnIn_func(test_data, meas_list):
     _item=meas[0]
     # _validator=meas[1]
     test_data.measurements[_item] = executor.run(_item)
+  for f in os.listdir(test_data.state['dut_id']):
+    test_data.AttachFromFile(os.path.join(test_data.state['dut_id'], f))
 
 def Build_Measment_List_From_CSV(CsvFile):
   measurement_list=[]
@@ -155,6 +157,7 @@ def test_start(index):
   return 'sn_' + str(index)
 
 def teardown(test_data):
+  shutil.rmtree(test_data.state['dut_id'], ignore_errors=True)
   index = test_data.state['thread_id']
   if test_data:
     test_data.logger.info('Running teardown at end of the test')
